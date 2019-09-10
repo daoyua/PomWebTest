@@ -26,12 +26,12 @@ public class TestMysql {
         return;
     }
 
-    private static void testInserMysql() {
+    public static void testInserMysql() {
         String []aas={"haha","jj"};
         DBUtil.executeUpdate("insert into stu(name,sex) values(?,?)",aas);
     }
 
-    private static void squeryMysqlUtil() {
+    public static void squeryMysqlUtil() {
         StringBuilder stringBuilder=new StringBuilder();
         List<Map<String, Object>> maps = DBUtil.executeQuery("select * from stu", null);
         for (Map<String, Object> map:
@@ -42,7 +42,7 @@ public class TestMysql {
         System.out.println(stringBuilder.toString());
     }
 
-    private static void testPath() throws IOException {
+    public static void testPath() throws IOException {
         Properties properties = new Properties();
 //        properties.load(new FileInputStream("db.properties"));
         ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
@@ -54,7 +54,7 @@ public class TestMysql {
         System.out.println(mysqlUsername.toString());
     }
 
-    private static void testMysql() throws ClassNotFoundException, SQLException {
+    public static void testMysql() throws ClassNotFoundException, SQLException {
         //1.注册驱动 反射技术,将驱动类加入到内容
         // 使用java.sql.DriverManager类静态方法 registerDriver(Driver driver)
         // Diver是一个接口,参数传递,MySQL驱动程序中的实现类
