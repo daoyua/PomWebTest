@@ -1,12 +1,14 @@
 package com.test.server.utils;
 
+import com.mchange.v2.c3p0.ComboPooledDataSource;
+
 import java.sql.*;
 import java.util.*;
 
 public class DBUtil {
     private static Connection connection = null;
     private static Properties properties = null;
-
+    private static ComboPooledDataSource comboPooledDataSource = null;
     /**
      * 建立连接
      *
@@ -16,9 +18,9 @@ public class DBUtil {
         properties = new Properties();
         try {
             properties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("db.properties"));
-            Class.forName(properties.getProperty("mysqlDriver"));
-            connection = DriverManager.getConnection(properties.getProperty("mysqlUrl"),
-                    properties.getProperty("mysqlUsername"), properties.getProperty("mysqlPassword"));
+            Class.forName(properties.getProperty("driverClassName"));
+            connection = DriverManager.getConnection(properties.getProperty("url"),
+                    properties.getProperty("username"), properties.getProperty("password"));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -33,30 +35,7 @@ public class DBUtil {
      * @param resultSet
      */
     public static void closeAll(Connection connection, Statement statement, ResultSet resultSet) {
-        if (resultSet != null) {
-            try {
-                resultSet.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
-        }
-        if (connection != null) {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
-        }
-        if (statement != null) {
-            try {
-                statement.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
-        }
+        DBUtilC3P0.closeAlls(connection, statement, resultSet);
     }
 
     /**
@@ -82,7 +61,7 @@ public class DBUtil {
         }
         return num;
     }
-private static PreparedStatement initMysql(String sql, Object[] params) throws SQLException {
+public static PreparedStatement initMysql(String sql, Object[] params) throws SQLException {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
     connection = DBUtil.getConnection();
