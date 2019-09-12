@@ -1,12 +1,15 @@
 package com.test.server.utils;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
+import com.test.server.Student;
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.junit.jupiter.api.Test;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
 import java.util.Properties;
-
-import static com.test.server.utils.DBUtil.initMysql;
 
 public class DBUtilC3P0 {
     private static Connection connection = null;
@@ -25,70 +28,33 @@ static {
         return comboPooledDataSource.getConnection();
     }
 
-    /**
-     * 关闭连接
-     *
-     * @param connection
-     * @param statement
-     * @param resultSet
-     */
-    public static void closeAll(Connection connection, Statement statement, ResultSet resultSet) {
-        closeAlls(connection, statement, resultSet);
-    }
-
-    static void closeAlls(Connection connection, Statement statement, ResultSet resultSet) {
-        if (resultSet != null) {
-            try {
-                resultSet.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
-        }
-        if (connection != null) {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
-        }
-        if (statement != null) {
-            try {
-                statement.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
-        }
-    }
-
-    /**
-     * 增删改查
-     *
-     * @param sql
-     * @param objects
-     * @return
-     */
-    public static int executeUpdate(String sql, Object[] objects) {
-        int num = 0;
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        try {
-            preparedStatement= initMysql(sql,objects);
-
-            num = preparedStatement.executeUpdate();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            DBUtilC3P0.closeAll(connection, preparedStatement, null);
-        }
-        return num;
-    }
-
-
-    public static void  executeQuery(String sql, Object[] params) {
+//    public static void  executeQuery(String sql, Object[] params) {
+    @Test
+    public  int  executeUpdate(String sql,Object ... objects) throws SQLException {
         QueryRunner runner=new QueryRunner(comboPooledDataSource);
+        int update = runner.update(sql, objects);
+        System.out.println(update);
+        return update;
+    }
+
+   public   <T>  List<T>  executeQuery(String sql,Class<T> tClass,Object ... objects) throws SQLException {
+        QueryRunner runner=new QueryRunner(comboPooledDataSource);
+        List<T> query1 = runner.query(sql, new BeanListHandler<>(tClass),objects);
+        System.out.println(query1.toString());
+        return query1;
+
+    }
+
+    @Test
+    public  void  test() throws SQLException {
+
+//        List<Student> students = executeQuery("select * from stu where id =1", Student.class);
+//        System.out.println(students.toArray());
+
+        int jjjjjjj = executeUpdate("update stu set name =? where id =?", "jjjjjjj", 5);
+        System.out.println(jjjjjjj);
+
+        List<Student> students = executeQuery("select * from stu", Student.class);
+        System.out.println(students.toArray());
     }
 }

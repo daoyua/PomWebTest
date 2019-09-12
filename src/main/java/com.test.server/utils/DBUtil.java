@@ -35,7 +35,7 @@ public class DBUtil {
      * @param resultSet
      */
     public static void closeAll(Connection connection, Statement statement, ResultSet resultSet) {
-        DBUtilC3P0.closeAlls(connection, statement, resultSet);
+       closeAlls(connection, statement, resultSet);
     }
 
     /**
@@ -66,8 +66,10 @@ public static PreparedStatement initMysql(String sql, Object[] params) throws SQ
     PreparedStatement preparedStatement = null;
     connection = DBUtil.getConnection();
     preparedStatement = connection.prepareStatement(sql);
-    if (params != null && params.length != 0) {
-        for (int i = 0; i < params.length; i++) {
+    //参数元参数
+    ParameterMetaData parameterMetaData = preparedStatement.getParameterMetaData();
+    if (params != null && parameterMetaData.getParameterCount() != 0) {
+        for (int i = 0; i < parameterMetaData.getParameterCount(); i++) {
             preparedStatement.setObject(i+1, params[i]);
         }
     }
@@ -80,7 +82,8 @@ public static PreparedStatement initMysql(String sql, Object[] params) throws SQ
         List<Map<String, Object>> list = new ArrayList<>();
         try {
             preparedStatement= initMysql(sql,params);
-          res=  preparedStatement.executeQuery();
+
+            res=  preparedStatement.executeQuery();
             ResultSetMetaData metaData = res.getMetaData();
             int columnCount = metaData.getColumnCount();
             while (res.next()){
@@ -99,5 +102,33 @@ public static PreparedStatement initMysql(String sql, Object[] params) throws SQ
             DBUtil.closeAll(connection, preparedStatement, null);
         }
         return list;
+    }
+
+
+    static void closeAlls(Connection connection, Statement statement, ResultSet resultSet) {
+        if (resultSet != null) {
+            try {
+                resultSet.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
+        if (statement != null) {
+            try {
+                statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
     }
 }

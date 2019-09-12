@@ -14,6 +14,7 @@ public class TestTransaction {
     @Test
     public void testTransaction(){
         try {
+
             String sql="update stu set name =?where id=?";
             StringBuilder stringBuilder=new StringBuilder();
             Object []ss={"hhhhhh",2};

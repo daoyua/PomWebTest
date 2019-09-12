@@ -26,5 +26,7 @@ public class TestC3P0 {
         System.out.println(resultSet.toString());
         preparedStatement.close();
         connection.close();
+
+
     }
 }
