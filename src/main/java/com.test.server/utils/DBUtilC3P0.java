@@ -29,15 +29,22 @@ static {
     }
 
 //    public static void  executeQuery(String sql, Object[] params) {
-    @Test
-    public  int  executeUpdate(String sql,Object ... objects) throws SQLException {
+
+    public  static int  executeUpdate(String sql,Object ... objects) throws SQLException {
         QueryRunner runner=new QueryRunner(comboPooledDataSource);
         int update = runner.update(sql, objects);
-        System.out.println(update);
+        String text;
+        if(update==1){
+            text="数据修改成功";
+        }else
+        {
+            text="数据修改失败";
+        }
+        System.out.println(text);
         return update;
     }
 
-   public   <T>  List<T>  executeQuery(String sql,Class<T> tClass,Object ... objects) throws SQLException {
+   public  static <T>  List<T>  executeQuery(String sql,Class<T> tClass,Object ... objects) throws SQLException {
         QueryRunner runner=new QueryRunner(comboPooledDataSource);
         List<T> query1 = runner.query(sql, new BeanListHandler<>(tClass),objects);
         System.out.println(query1.toString());
@@ -47,10 +54,6 @@ static {
 
     @Test
     public  void  test() throws SQLException {
-
-//        List<Student> students = executeQuery("select * from stu where id =1", Student.class);
-//        System.out.println(students.toArray());
-
         int jjjjjjj = executeUpdate("update stu set name =? where id =?", "jjjjjjj", 5);
         System.out.println(jjjjjjj);
 
