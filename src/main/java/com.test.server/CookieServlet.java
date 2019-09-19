@@ -9,20 +9,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "CookieServlet", urlPatterns = "/c", loadOnStartup = 1, initParams = {@WebInitParam(name = "haha", value = "hh")})
+//@WebServlet(name = "CookieServlet", urlPatterns = "/c", loadOnStartup = 1, initParams = {@WebInitParam(name = "haha", value = "hh")})
+@WebServlet(name = "CookieServlet", urlPatterns = "/c", initParams = {@WebInitParam(name = "haha", value = "hh")})
 public class CookieServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("POST请求成功了");
         doGet(request, response);
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
-//        request.getParameter("username")
-
-        //相应cookie
         response.setContentType("text/html ; charset =UTF-8");
+
+        String name1 = request.getParameter("name");
+        String age = request.getParameter("age");
+        System.out.println("请求成功了"+name1+age);
+        //相应cookie
+
         Cookie cookie = new Cookie("name", "zhangshan");
         cookie.setMaxAge(-1);
         cookie.setDomain("ithei.com");
@@ -47,6 +50,7 @@ public class CookieServlet extends HttpServlet {
         String aa="hah";
         String bb="hah";
         System.out.println(aa==bb);
+
 //有效期 ，默认关闭浏览器没有
 
     }
