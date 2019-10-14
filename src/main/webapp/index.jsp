@@ -12,6 +12,6 @@
     dunhua dunhua =new dunhua();
     session.setAttribute("dunhua",dunhua);
 %>
-<h2>Hello World!</h2>
+<h2>Hello World!aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</h2>
 </body>
 </html>
