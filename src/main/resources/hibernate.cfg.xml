@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <!--<property name="connection.url"/>-->
+    <!--<property name="connection.driver_class"/>-->
+    <!-- <property name="connection.username"/> -->
+    <!-- <property name="connection.password"/> -->
+
+    <!-- DB schema will be updated if needed -->
+    <!-- <property name="hbm2ddl.auto">update</property> -->
+
+    <!--  mysql密码  -->
+
+    <property name="hibernate.connection.username">root</property>
+
+    <!--  mysql密码  -->
+    <property name="hibernate.connection.password">zhouyang</property>
+    <!--  mysql驱动  -->
+    <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+    <!--<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>-->
+
+    <!--  mysql连接URL  -->
+    <!--建议：mysql的url最好是这样写上，如果要连接远程mysql，只需要把127.0.0.0.1的改为远程mysql地址即可，这里的zhibo 为数据库名，后面跟上的一串为字符串的编码，建议都写上-->
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/test?serverTimezone=UTC</property>
+
+    <!--  数据库方言  -->
+    <!--<property name="dialect">org.hibernate.dialect.MySQLDialect</property>-->
+    <!--// 5.0之后使用的数据库方言-->
+    <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
+
+    <!--  显示sql语句  -->
+    <property name="show_sql">true</property>
+
+    <!--  格式化sql语句  -->
+    <property name="format_sql">true</property>
+
+    <!--  根据需要创建数据库  （这里的操作是，如果数据库中已经有这个表，就将这个表删除掉，重新创建表格）-->
+    <!--<property name="hbm2ddl.auto">create</property>-->
+    <!--添加刚刚生成的映射类-->
+    <mapping class="com.test.server.hibernate.Customer"></mapping>
+    <mapping class="com.test.server.hibernate.StuEntity"/>
+  </session-factory>
+</hibernate-configuration>
