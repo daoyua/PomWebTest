@@ -29,18 +29,22 @@
     <!--  数据库方言  -->
     <!--<property name="dialect">org.hibernate.dialect.MySQLDialect</property>-->
     <!--// 5.0之后使用的数据库方言-->
-    <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
 
     <!--  显示sql语句  -->
-    <property name="show_sql">true</property>
+    <property name="hibernate.show_sql">true</property>
 
     <!--  格式化sql语句  -->
-    <property name="format_sql">true</property>
+    <property name="hibernate.format_sql">true</property>
 
     <!--  根据需要创建数据库  （这里的操作是，如果数据库中已经有这个表，就将这个表删除掉，重新创建表格）-->
     <!--<property name="hbm2ddl.auto">create</property>-->
     <!--添加刚刚生成的映射类-->
-    <mapping class="com.test.server.hibernate.Customer"></mapping>
+   <mapping resource="com/test/server/hibernate/Customer.hbm.xml"></mapping>
+    <!--<mapping class="com.test.server.hibernate.Customer"></mapping>-->
     <mapping class="com.test.server.hibernate.StuEntity"/>
+    <mapping class="com.test.server.hibernate.CstCustomerEntity"/>
+    <mapping class="com.test.server.hibernate.StudentEntity"/>
+    <mapping class="com.test.server.hibernate.UserEntity"/>
   </session-factory>
 </hibernate-configuration>

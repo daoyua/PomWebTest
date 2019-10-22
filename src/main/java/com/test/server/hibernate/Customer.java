@@ -1,7 +1,7 @@
 package com.test.server.hibernate;
 
 public class Customer {
-    private Long customerId;
+    private int customerId;
     private String cust_name;
     private String cust_source;
     private String cust_leave;
@@ -9,11 +9,11 @@ public class Customer {
     private String cust_phone;
     private String cust_mobile;
 
-    public Long getCustomerId() {
+    public int getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(Long customerId) {
+    public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
 

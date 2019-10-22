@@ -16,10 +16,12 @@ public class TestHibernate {
     public static void init(){
         //创建会话工厂
         sessionFactory = new Configuration().configure().buildSessionFactory();
+//        sessionFactory = new Configuration().configure("ali_hibernate.cfg.xml").buildSessionFactory();
         // 开启会话
         session =sessionFactory.openSession();
         //开启事物
         transaction = session.beginTransaction();
+
     }
     // 测试结束
     @AfterAll
@@ -33,9 +35,16 @@ public class TestHibernate {
     }
     @Test
    public void testHibernate(){
-     StuEntity stuEntity=new StuEntity();
-     stuEntity.setName("sbsbsbsbsbsb");
-     stuEntity.setSex("nan");
-     session.save(stuEntity);
+//     StuEntity stuEntity=new StuEntity();
+//     stuEntity.setName("sbsbsbsbsbsb");
+//     stuEntity.setSex("nan");
+//     session.save(stuEntity);
+//        CstCustomerEntity cstCustomerEntity=new CstCustomerEntity();
+//        cstCustomerEntity.setCustName("CstCustomerEntityCstCustomerEntity");
+//        session.save(cstCustomerEntity);
+
+        Customer customer =new Customer();
+        customer.setCust_name("aaaaaaaa");
+        session.save(customer);
    }
 }

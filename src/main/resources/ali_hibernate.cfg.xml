@@ -23,7 +23,7 @@
 
     <!--  mysql连接URL  -->
     <!--建议：mysql的url最好是这样写上，如果要连接远程mysql，只需要把127.0.0.0.1的改为远程mysql地址即可，这里的zhibo 为数据库名，后面跟上的一串为字符串的编码，建议都写上-->
-    <property name="hibernate.connection.url">jdbc:mysql://39.105.31.23:22/zhibo?useUnicode=true&amp;characterEncoding=UTF-8</property>
+    <property name="hibernate.connection.url">jdbc:mysql://39.105.31.23:22/zhibo?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC</property>
 
     <!--  数据库方言  -->
     <!--<property name="dialect">org.hibernate.dialect.MySQLDialect</property>-->
