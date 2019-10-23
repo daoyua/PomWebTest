@@ -36,6 +36,7 @@
 
     <!--  格式化sql语句  -->
     <property name="hibernate.format_sql">true</property>
+      <property name="hibernate.hbm2ddl.auto">update</property>
 
     <!--  根据需要创建数据库  （这里的操作是，如果数据库中已经有这个表，就将这个表删除掉，重新创建表格）-->
     <!--<property name="hbm2ddl.auto">create</property>-->

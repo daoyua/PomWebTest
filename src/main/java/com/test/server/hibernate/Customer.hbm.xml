@@ -4,7 +4,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.test.server.hibernate">
 <!--类和表的映射-->
-    <class name="Customer" table="cst_customer">
+    <class name="Customer" table="cst_customer" schema="test">
         <id name="customerId" column="customerId">
             <generator class="native"></generator>
         </id>
