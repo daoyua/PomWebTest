@@ -112,4 +112,17 @@ public class CstCustomerEntity {
         result = 31 * result + (custMobile != null ? custMobile.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "CstCustomerEntity{" +
+                "customerId=" + customerId +
+                ", custName='" + custName + '\'' +
+                ", custSource='" + custSource + '\'' +
+                ", custLeave='" + custLeave + '\'' +
+                ", custIndustry='" + custIndustry + '\'' +
+                ", custPhone='" + custPhone + '\'' +
+                ", custMobile='" + custMobile + '\'' +
+                '}';
+    }
 }

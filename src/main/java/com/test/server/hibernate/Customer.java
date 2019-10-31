@@ -64,4 +64,17 @@ public class Customer {
     public void setCust_mobile(String cust_mobile) {
         this.cust_mobile = cust_mobile;
     }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "customerId=" + customerId +
+                ", cust_name='" + cust_name + '\'' +
+                ", cust_source='" + cust_source + '\'' +
+                ", cust_leave='" + cust_leave + '\'' +
+                ", cust_industry='" + cust_industry + '\'' +
+                ", cust_phone='" + cust_phone + '\'' +
+                ", cust_mobile='" + cust_mobile + '\'' +
+                '}';
+    }
 }
