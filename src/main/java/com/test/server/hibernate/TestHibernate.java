@@ -37,14 +37,14 @@ public class TestHibernate {
    public void testHibernate(){
 //     StuEntity stuEntity=new StuEntity();
 //     stuEntity.setName("sbsbsbsbsbsb");
-//     stuEntity.setSex("nan");
+//     stuEnt ity.setSex("nan");
 //     session.save(stuEntity);
 //        CstCustomerEntity cstCustomerEntity=new CstCustomerEntity();
 //        cstCustomerEntity.setCustName("CstCustomerEntityCstCustomerEntity");
 //        session.save(cstCustomerEntity);
 
         Customer customer =new Customer();
-        customer.setCust_name("aaaaaaaa");
+        customer.setCust_name("bbbbbbb");
         session.save(customer);
    }
 }
