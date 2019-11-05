@@ -1,5 +1,7 @@
 package com.test.server.hibernate;
 
+import com.test.server.TestAnnotation;
+
 public class Customer {
     private int customerId;
     private String cust_name;
@@ -56,7 +58,7 @@ public class Customer {
     public void setCust_phone(String cust_phone) {
         this.cust_phone = cust_phone;
     }
-
+@TestAnnotation(timeout = 2000)
     public String getCust_mobile() {
         return cust_mobile;
     }

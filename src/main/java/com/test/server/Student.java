@@ -4,7 +4,7 @@ public class Student {
     private String name;
     private String sex;
     private int id;
-
+@TestAnnotation
     public String getName() {
         return name;
     }
